@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 // I'll clean this up later
 public class API {
 
-    public static void main(String[] args) {
+    public static void APICall() {
 
         // take in address from input
         Scanner s = new Scanner(System.in);
@@ -38,7 +38,6 @@ public class API {
 
         // Format the URL, feed into gridpoints function, then feed into getTheWeather
         getTheWeather(gridpoints(formatURLGridpoints(urlFormat, coords)));
-
     }
 
     private static String formatURLGridpoints(String urlFormat, Double coords[]) {

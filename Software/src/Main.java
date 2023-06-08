@@ -1,14 +1,12 @@
 package Software.src;
 
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    public static void main(String ags[]) {
+    public static void main(String args[]) {
 
         //Creates the desktop application
         Application desktopApp=new Application();
@@ -21,6 +19,6 @@ public class Main {
 
     //API reference
     public static void APICaller() {
-        new API();
+        API.APICall();
     }
 }
