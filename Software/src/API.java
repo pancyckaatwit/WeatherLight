@@ -1,3 +1,4 @@
+package Software.src;
 
 import java.util.*;
 import java.net.*;
@@ -7,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 // import java.lang.Math.*;
 
 // I'll clean this up later
-public class App {
+public class API {
 
     public static void main(String[] args) {
 

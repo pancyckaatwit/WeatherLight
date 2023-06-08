@@ -3,7 +3,6 @@ package Software.src;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 //Responsible for the simulation section of the app

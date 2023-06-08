@@ -13,7 +13,7 @@ import com.google.gson.*;
 import com.google.gson.reflect.*;
 
 //This class will handle the API calls from openweathermap.org
-public class API {
+public class OLDAPI {
     //Converts json to map
     public static Map<String, Object> jsonToMap (String str) {
         Map<String, Object> map = new Gson().fromJson(
@@ -24,7 +24,7 @@ public class API {
     public static void main(String args[]) {
         String APIKey="2901407f0cd76bfb44b44738a1fa4947";
         String location="Boston, MA";
-        String URLString="http://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + APIKey + "&units=imperial";
+        String URLString="http://api.openweathermap.org/data/2.5/forecast?id=" + location + "&appid=" + APIKey + "&units=imperial";
         try {
             StringBuilder result=new StringBuilder();
             URL url=new URL(URLString);
