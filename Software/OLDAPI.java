@@ -24,7 +24,8 @@ public class OLDAPI {
     public static void main(String args[]) {
         String APIKey="2901407f0cd76bfb44b44738a1fa4947";
         String location="Boston, MA";
-        String URLString="http://api.openweathermap.org/data/2.5/forecast?id=" + location + "&appid=" + APIKey + "&units=imperial";
+        //String URLString="http://api.openweathermap.org/data/2.5/forecast?id= " + location + "&appid=" + APIKey + "&units=imperial";
+        String URLString="http://api.openweathermap.org/data/2.5/find?q=Boston&units=imperial&type=accurate&mode=xml&APPID=2901407f0cd76bfb44b44738a1fa4947";
         try {
             StringBuilder result=new StringBuilder();
             URL url=new URL(URLString);

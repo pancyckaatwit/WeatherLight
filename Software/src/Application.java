@@ -13,7 +13,6 @@ public class Application extends JFrame{
     private WeatherInfo w=new WeatherInfo();
 
     Application() {
-        //Declaration for variables
         //Size and rules for JFrame
         JFrame application=new JFrame("WeatherLight");
         application.setSize(800, 800);

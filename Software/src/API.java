@@ -1,6 +1,11 @@
 package Software.src;
 
 import java.util.*;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.net.*;
 import java.io.*;
 import java.net.http.*;
@@ -10,22 +15,14 @@ import java.nio.charset.StandardCharsets;
 // I'll clean this up later
 public class API {
 
+    //Variables
+    private static double temperature;
+    private static String windSpeed;
+    private static String forecast;
+
     public static void APICall() {
 
-        // take in address from input
-        Scanner s = new Scanner(System.in);
-        System.out.print("Enter an address: ");
-        String address = s.nextLine();
-        s.close();
-
-        // I don't want to keep typing it
-        // probably don't leave in at the end
-        if (address.equals("!")) {
-            address = "boston logan airport";
-        } else if (address.equals("@")) {
-            // NW Florida
-            address = "550 alf coleman rd panama city beach";
-        }
+        String address= "boston logan airport";
 
         // Just trust me, it has to do this
         String encodedAddress = URLEncoder.encode(address, StandardCharsets.UTF_8);
@@ -202,11 +199,40 @@ public class API {
             String responseBody = response.body();
 
             // For now just prints the whole thing, we can pull whatever later
-            System.out.println(responseBody);
+            //System.out.println(responseBody);
+
+            //Parse the JSON Object
+            JsonObject jsonObject=JsonParser.parseString(responseBody).getAsJsonObject();
+
+            // Access the temperature information and get the value
+            JsonArray periodsArray = jsonObject.getAsJsonObject("properties").getAsJsonArray("periods");
+
+            //Access the temperature information and get the value
+            JsonObject temperatureObject=periodsArray.get(0).getAsJsonObject();
+            temperature=temperatureObject.get("temperature").getAsDouble();
+
+            //Access the windspeed information
+            JsonObject windSpeedObject=periodsArray.get(0).getAsJsonObject();
+            windSpeed=windSpeedObject.get("windSpeed").getAsString();
+            //Access the short forecast information
+            JsonObject forecastObject=periodsArray.get(0).getAsJsonObject();
+            forecast=forecastObject.get("shortForecast").getAsString();
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static double getTemperature() {
+        return temperature;
+    }
+
+    public static String getWindSpeed() {
+        return windSpeed;
+    }
+
+    public static String getForecast() {
+        return forecast;
     }
 
 }

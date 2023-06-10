@@ -14,7 +14,7 @@ public class Main {
         //Calls API every 10 minutes
         ScheduledExecutorService executorService;
         executorService=Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleAtFixedRate(Main::APICaller, 0, 10, TimeUnit.MINUTES);
+        executorService.scheduleAtFixedRate(Main::APICaller, 0, 10, TimeUnit.SECONDS);
     }
 
     //API reference

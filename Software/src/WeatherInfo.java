@@ -12,11 +12,21 @@ import javax.swing.JPanel;
 public class WeatherInfo extends JPanel{
 
     //Variables
-    double temperature=0;
-    double windSpeed=0;
+    double temperature;
+    String windSpeed;
     String currentForecast;
 
-    WeatherInfo() {
+    JLabel temperatureText;
+    JLabel windSpeedText;
+    JLabel forecastText;
+
+    public WeatherInfo() {
+        //Declaration of variables
+        API.APICall();
+        temperature=0;
+        windSpeed="";
+        currentForecast="";
+
         //Section for the weather information
         JPanel weatherInfo=new JPanel(new GridLayout(0, 1));
         weatherInfo.setPreferredSize(new Dimension(600, 200));
@@ -24,7 +34,7 @@ public class WeatherInfo extends JPanel{
         weatherInfo.setBackground(Color.LIGHT_GRAY);
 
         //Temperature text
-        JLabel temperatureText=new JLabel("Temperature: " + temperature);
+        temperatureText=new JLabel("Temperature: " + temperature);
         temperatureText.setFont(new Font("Sans=serif", Font.BOLD, 20));
         temperatureText.setHorizontalAlignment(JLabel.CENTER);
         temperatureText.setVerticalAlignment(JLabel.CENTER);
@@ -32,14 +42,14 @@ public class WeatherInfo extends JPanel{
         this.setBackground(Color.LIGHT_GRAY);
 
         //Crurrent forecast text
-        JLabel forecastText=new JLabel("Current Forecast: " + currentForecast);
+        forecastText=new JLabel("Current Forecast: " + currentForecast);
         forecastText.setFont(new Font("Sans=serif", Font.BOLD, 20));
         forecastText.setHorizontalAlignment(JLabel.CENTER);
         forecastText.setVerticalAlignment(JLabel.CENTER);
         forecastText.setForeground(Color.BLACK);
 
         //Wind speed text
-        JLabel windSpeedText=new JLabel("Wind speed: " + windSpeed);
+        windSpeedText=new JLabel("Wind speed: " + windSpeed);
         windSpeedText.setFont(new Font("Sans=serif", Font.BOLD, 20));
         windSpeedText.setHorizontalAlignment(JLabel.CENTER);
         windSpeedText.setVerticalAlignment(JLabel.CENTER);
@@ -49,5 +59,17 @@ public class WeatherInfo extends JPanel{
         weatherInfo.add(forecastText);
         weatherInfo.add(windSpeedText);
         this.add(weatherInfo);
+        updateWeatherInfo();
+    }
+
+    //Updates weather info
+    public void updateWeatherInfo() {
+        temperature = API.getTemperature();
+        windSpeed = API.getWindSpeed();
+        currentForecast = API.getForecast();
+
+        temperatureText.setText("Temperature: " + temperature);
+        forecastText.setText("Current Forecast: " + currentForecast);
+        windSpeedText.setText("Wind speed: " + windSpeed);
     }
 }

@@ -13,7 +13,7 @@ public class Title extends JPanel{
     //Variables
     Color lightBlue=new Color(135, 206, 235);
 
-    Title() {
+    public Title() {
         JLabel title=new JLabel("WeatherLight");
         title.setPreferredSize(new Dimension(800, 85));
         title.setFont(new Font("Sans=serif", Font.BOLD, 40));
