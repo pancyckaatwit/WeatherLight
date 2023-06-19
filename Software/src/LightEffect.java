@@ -5,12 +5,14 @@ import java.awt.Color;
 public class LightEffect {
     
     //Variables
-    double temperature=0;
+    double temperature;
     Color tempColor;
 
     //Will get a base color depending on the temp (As of now it changes every 3 degrees ranging from 10 to 98)
     public Color setTemperatureColor() {
+        API.APICall();
         temperature=API.getTemperature();
+        System.out.println("Temp value: " + temperature);
         if(temperature<4) {
             tempColor=Color.BLUE;
         }else if(temperature>4 && temperature<=7) {
