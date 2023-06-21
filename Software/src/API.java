@@ -23,6 +23,7 @@ public class API {
     public static void APICall() {
 
         String address= "boston logan airport";
+        //String address2= "140 marlin circle panama city beach";
 
         // Just trust me, it has to do this
         String encodedAddress = URLEncoder.encode(address, StandardCharsets.UTF_8);
