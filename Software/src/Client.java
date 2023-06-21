@@ -1,5 +1,6 @@
 package Software.src;
 
+import java.awt.Color;
 import java.io.*;
 import java.net.*;
 
@@ -100,10 +101,16 @@ public class Client {
 		String msg;
 		while (true) {
 			try {
-				msg = kbIn.readLine();
+				//msg = kbIn.readLine();
+				msg="sendTempColor";
 				//pw.println(formatMsg(user, msg));
 				pw.println(msg);
 				pw.flush();
+				if(msg.equals("sendTempColor")) {
+					LightEffect lightEffect=new LightEffect();
+					Color tempColor=lightEffect.setTemperatureColor();
+					pw.println(tempColor.getRed() + "," + tempColor.getGreen() + "," + tempColor.getBlue());
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 				System.exit(1);

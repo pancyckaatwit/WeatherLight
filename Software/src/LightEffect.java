@@ -12,7 +12,6 @@ public class LightEffect {
     public Color setTemperatureColor() {
         API.APICall();
         temperature=API.getTemperature();
-        System.out.println("Temp value: " + temperature);
         if(temperature<4) {
             tempColor=Color.BLUE;
         }else if(temperature>4 && temperature<=7) {
