@@ -11,6 +11,14 @@ public class Main {
         //Creates the desktop application
         Application desktopApp=new Application();
 
+        //Calls the Client class
+        try {
+            Client.ClientCall(args);
+        }catch (Exception e){
+            e.printStackTrace();
+            System.exit(1);
+        }
+
         //Calls API every 10 minutes
         ScheduledExecutorService executorService;
         executorService=Executors.newSingleThreadScheduledExecutor();

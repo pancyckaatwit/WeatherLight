@@ -19,7 +19,7 @@ public class Client {
 	private static String portString = "25565";
 	private static String user = "Username";
 
-	public static void main(String[] args) throws Exception {
+	public static void ClientCall(String[] args) throws Exception {
 
 		// Reads from keyboard
 		BufferedReader kbIn = new BufferedReader(new InputStreamReader(System.in));
