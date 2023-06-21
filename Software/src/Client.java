@@ -100,23 +100,20 @@ public class Client {
 	private static void out(BufferedReader kbIn, PrintWriter pw) {
 		String msg;
 		while (true) {
-			try {
 				//msg = kbIn.readLine();
+				//Msg is set to the temp so it will activate if statement below
 				msg="sendTempColor";
 				//pw.println(formatMsg(user, msg));
 				pw.println(msg);
 				pw.flush();
+				//If statement that sends the tempColor RGB values
 				if(msg.equals("sendTempColor")) {
 					LightEffect lightEffect=new LightEffect();
 					Color tempColor=lightEffect.setTemperatureColor();
 					pw.println(tempColor.getRed() + "," + tempColor.getGreen() + "," + tempColor.getBlue());
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
-				System.exit(1);
-			}
 		}
-	}
+	}	
 
 	/**
 	 * Formats the username and message to send. 'Username: Message'
