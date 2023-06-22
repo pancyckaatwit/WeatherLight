@@ -104,13 +104,13 @@ public class Client {
 				//Msg is set to the temp so it will activate if statement below
 				msg="sendTempColor";
 				//pw.println(formatMsg(user, msg));
-				pw.println(msg);
+				//pw.println(msg);
 				pw.flush();
 				//If statement that sends the tempColor RGB values
 				if(msg.equals("sendTempColor")) {
 					LightEffect lightEffect=new LightEffect();
 					Color tempColor=lightEffect.setTemperatureColor();
-					pw.println(tempColor.getRed() + "," + tempColor.getGreen() + "," + tempColor.getBlue());
+					pw.println(tempColor.getRed() + " " + tempColor.getGreen() + " " + tempColor.getBlue());
 				}
 		}
 	}	
