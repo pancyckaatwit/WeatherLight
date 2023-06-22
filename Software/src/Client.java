@@ -14,7 +14,7 @@ import java.net.*;
 public class Client {
 
 	// Default settings
-	private static String ip = "localhost";
+	private static String ip = "192.168.8.127";
 	private static int port = 25565;
 	private static String portString = "25565";
 	private static String user = "Username";
