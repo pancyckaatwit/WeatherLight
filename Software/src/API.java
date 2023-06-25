@@ -235,5 +235,4 @@ public class API {
     public static String getForecast() {
         return forecast;
     }
-
 }

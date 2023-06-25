@@ -15,8 +15,8 @@ public class LightEffect {
     //Will get a base color depending on the temp (As of now it changes every 3 degrees ranging from 10 to 98)
     public Color setTemperatureColor() {
         API.APICall();
-        //temperature=API.getTemperature();
-        temperature=random.nextInt(101);
+        temperature=API.getTemperature();
+        //temperature=random.nextInt(101);
         System.out.println("Temp: "+temperature);
 
         if(temperature<4) {

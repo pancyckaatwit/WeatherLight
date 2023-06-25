@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,6 +23,8 @@ public class WeatherInfo extends JPanel{
     JLabel temperatureText;
     JLabel windSpeedText;
     JLabel forecastText;
+
+    ScheduledExecutorService executorService;
 
     public WeatherInfo() {
         //Declaration of variables
@@ -59,7 +65,14 @@ public class WeatherInfo extends JPanel{
         weatherInfo.add(forecastText);
         weatherInfo.add(windSpeedText);
         this.add(weatherInfo);
-        updateWeatherInfo();
+
+        executorService = Executors.newSingleThreadScheduledExecutor();
+        executorService.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                updateWeatherInfo();
+            }
+        }, 0, 10, TimeUnit.SECONDS);
     }
 
     //Updates weather info
