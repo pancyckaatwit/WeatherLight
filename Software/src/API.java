@@ -19,10 +19,10 @@ public class API {
     private static double temperature;
     private static String windSpeed;
     private static String forecast;
+    private static String address="boston logan airport";
 
     public static void APICall() {
-
-        String address= "boston logan airport";
+        
         //String address2= "140 marlin circle panama city beach";
 
         // Just trust me, it has to do this
@@ -234,5 +234,9 @@ public class API {
 
     public static String getForecast() {
         return forecast;
+    }
+
+    public static void setAddress(String newAddress) {
+        address=newAddress;
     }
 }
