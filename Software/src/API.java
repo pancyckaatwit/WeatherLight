@@ -19,7 +19,7 @@ public class API {
     private static double temperature;
     private static String windSpeed;
     private static String forecast;
-    private static String address="boston logan airport";
+    private static String address="525 Huntington Avenue";
 
     public static void APICall() {
         
@@ -137,7 +137,7 @@ public class API {
             encodedAddress = URLEncoder.encode(gridX.toString(), StandardCharsets.UTF_8);
             x = x + encodedAddress + ",";
             encodedAddress = URLEncoder.encode(gridY.toString(), StandardCharsets.UTF_8);
-            x = x + encodedAddress + "/forecast";
+            x = x + encodedAddress + "/forecast/hourly";
 
             // Returns the formatted URL for the next request
             return x;
