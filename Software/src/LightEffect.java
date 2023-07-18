@@ -2,6 +2,7 @@ package Software.src;
 
 import java.awt.Color;
 import java.util.Random;
+import java.util.concurrent.ScheduledExecutorService;
 
 //Responsible for the color of the simulation
 public class LightEffect {
@@ -9,14 +10,13 @@ public class LightEffect {
     //Variables
     double temperature;
     Color tempColor;
-
-    Random random=new Random();
+    String forecast;
+    Color weatherEffect;
 
     //Will get a base color depending on the temp (As of now it changes every 3 degrees ranging from 10 to 98)
     public Color setTemperatureColor() {
-        API.APICall();
+        //API.APICall();
         temperature=API.getTemperature();
-        //temperature=random.nextInt(101);
         System.out.println("Temp: "+temperature);
 
         if(temperature<4) {
@@ -88,4 +88,95 @@ public class LightEffect {
         }
         return tempColor;
     }
+
+    //Will look through the forecast string from the API and set a unique weather effect depending on the string
+    public Color setWeatherEffect() {
+        API.APICall();
+        forecast=API.getForecast();
+        if(forecast.contains("Sunny") || forecast.contains("sunny")) {
+            weatherEffect=sunnyEffect();
+            return weatherEffect;
+        }else if(forecast.contains("Thunder") || forecast.contains("thunder")) {
+            weatherEffect=thunderEffect();
+            return weatherEffect;
+        }else if(forecast.contains("Snow") || forecast.contains("snow")) {
+            weatherEffect=snowEffect();
+            return weatherEffect;
+        }else if(forecast.contains("Rain") || forecast.contains("rain")) {
+            weatherEffect=rainEffect();
+            return weatherEffect;
+        }else if(forecast.contains("Cloudy") || forecast.contains("cloudy")) {
+            weatherEffect=cloudyEffect();
+            return weatherEffect;
+        }else {
+            weatherEffect=null;
+        }
+        return weatherEffect;
+    }
+
+    //Method for the sunny weather effect on the App simulation
+    public Color sunnyEffect() {
+        //Variables to decide color of sunnyEffect
+        Random random=new Random();
+        int sunnyRed=255;
+        //Sets a random green value between 225 and 255
+        int sunnyGreen=random.nextInt(30)+225;
+        //Sets a random blue value between 100 and 130
+        int sunnyBlue=random.nextInt(30)+100;
+        Color sunnyColor=new Color(sunnyRed, sunnyGreen, sunnyBlue);
+        weatherEffect=sunnyColor;
+
+        return weatherEffect;
+    }
+
+    //Method for the thunder weather effect on the App simulation
+    public Color thunderEffect() {
+        //Variables to determine whether the color is yellow or gray
+        Boolean lightningOrNot;
+        Random random=new Random();
+        int randomNumber=random.nextInt(10)+1;
+
+        //It has a 1/20 chance to be yellow
+        if(randomNumber==1) {
+            lightningOrNot=true;
+        }else {
+            lightningOrNot=false;
+        }
+
+        //If the boolean is true the color will be yellow if not it will be light gray
+        if(lightningOrNot==true) {
+            weatherEffect=Color.YELLOW;
+        }else {
+            weatherEffect=Color.LIGHT_GRAY;
+        }
+        return weatherEffect;
+    }
+
+    //Method for the snow weather effect on the App simulation
+    public Color snowEffect() {
+        weatherEffect=Color.WHITE;
+        return weatherEffect;
+    }
+
+    //Method for the rain weather effect on the App simulation
+    public Color rainEffect() {
+        //Variables to decide color of sunnyEffect
+        Random random=new Random();
+        int rainRed=255;
+        //Sets a random green value between 225 and 255
+        int rainGreen=random.nextInt(30)+225;
+        //Sets a random blue value between 100 and 130
+        int rainBlue=255;
+        Color rainColor=new Color(rainRed, rainGreen, rainBlue);
+        weatherEffect=rainColor;
+
+        return weatherEffect;
+    }
+
+    //Method for the cloudy weather effect on the App simulation
+    public Color cloudyEffect() {
+        weatherEffect=Color.GRAY;
+        return weatherEffect;
+    }
+    
 }
