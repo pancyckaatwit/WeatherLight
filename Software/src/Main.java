@@ -19,7 +19,7 @@ public class Main {
             //System.exit(1);
         }
 
-        //Calls API every 10 seconds
+        //Calls API every 10 minutes
         ScheduledExecutorService executorService;
         executorService=Executors.newSingleThreadScheduledExecutor();
         executorService.scheduleAtFixedRate(Main::APICaller, 0, 10, TimeUnit.MINUTES);

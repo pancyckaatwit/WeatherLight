@@ -32,7 +32,7 @@ public class Simulation extends JPanel{
             @Override
             public void run() {
                 simulationState = !simulationState;
-                System.out.println(simulationState);
+                System.out.println("Simulation State: " + simulationState);
             }
         }, 0, 10, TimeUnit.SECONDS);
         //Updates background color 1/2 a second
