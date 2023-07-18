@@ -28,7 +28,7 @@ public class WeatherInfo extends JPanel{
 
     public WeatherInfo() {
         //Declaration of variables
-        API.APICall();
+        //API.APICall();
         temperature=0;
         windSpeed="";
         currentForecast="";

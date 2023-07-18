@@ -109,7 +109,7 @@ public class LightEffect {
             weatherEffect=cloudyEffect();
             return weatherEffect;
         }else {
-            weatherEffect=null;
+            weatherEffect=setTemperatureColor();
         }
         return weatherEffect;
     }

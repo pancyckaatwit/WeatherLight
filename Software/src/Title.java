@@ -36,6 +36,7 @@ public class Title extends JPanel{
         addressButton.addActionListener(e-> {
             String address=addressBar.getText();
             updateAddress(address);
+            API.APICall();
         });
         addressButton.setPreferredSize(new Dimension(50, 30));
         

@@ -13,16 +13,16 @@ public class Main {
 
         //Calls the Client class
         try {
-            Client.ClientCall(args);
+            //Client.ClientCall(args);
         }catch (Exception e){
             e.printStackTrace();
-            System.exit(1);
+            //System.exit(1);
         }
 
         //Calls API every 10 seconds
         ScheduledExecutorService executorService;
         executorService=Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleAtFixedRate(Main::APICaller, 0, 10, TimeUnit.SECONDS);
+        executorService.scheduleAtFixedRate(Main::APICaller, 0, 10, TimeUnit.MINUTES);
     }
 
     //API reference
