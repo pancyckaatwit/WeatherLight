@@ -61,6 +61,6 @@ public class API2 {
             return resultLocation;
         } catch (IOException | InterruptedException e) {
         }
-        return "what happened";
+        return "525 Huntington Ave, Boston, MA";
     }
 }

@@ -3,6 +3,7 @@ package Software.src;
 import java.util.*;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -15,15 +16,18 @@ import java.nio.charset.StandardCharsets;
 // I'll clean this up later
 public class API {
 
-    //Variables
+    // Variables
     private static double temperature;
     private static String windSpeed;
     private static String forecast;
-    private static String address="525 Huntington Avenue";
+    private static String address = "525 Huntington Avenue, Boston MA!";
 
     public static void APICall() {
-        
-        //String address2= "140 marlin circle panama city beach";
+
+        if (address == "525 Huntington Avenue, Boston MA!") {
+            address = API2.APICall();
+        }
+        // String address2= "140 marlin circle panama city beach";
 
         // Just trust me, it has to do this
         String encodedAddress = URLEncoder.encode(address, StandardCharsets.UTF_8);
@@ -67,12 +71,26 @@ public class API {
             // string that contains the full response
             String responseBody = response.body();
 
+            JsonArray jsonArray = JsonParser.parseString(responseBody).getAsJsonArray();
+
+            for (JsonElement element : jsonArray) {
+                JsonObject jsonObject = element.getAsJsonObject();
+                JsonArray boundingbox = jsonObject.get("boundingbox").getAsJsonArray();
+                double minLat = boundingbox.get(0).getAsDouble();
+                double maxLat = boundingbox.get(1).getAsDouble();
+                double minLon = boundingbox.get(2).getAsDouble();
+                double maxLon = boundingbox.get(3).getAsDouble();
+
+                returner[0] = Math.round(minLat * 1000.0) / 1000.0;
+                returner[1] = Math.round(minLon * 1000.0) / 1000.0;
+                return;
+            }
             // contain the results of the latitude and longitude
             // java moment
-            returner[0] = latlon(0, responseBody);
-            returner[1] = latlon(1, responseBody);
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException |
+
+                InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -200,24 +218,24 @@ public class API {
             String responseBody = response.body();
 
             // For now just prints the whole thing, we can pull whatever later
-            //System.out.println(responseBody);
+            // System.out.println(responseBody);
 
-            //Parse the JSON Object
-            JsonObject jsonObject=JsonParser.parseString(responseBody).getAsJsonObject();
+            // Parse the JSON Object
+            JsonObject jsonObject = JsonParser.parseString(responseBody).getAsJsonObject();
 
             // Access the temperature information and get the value
             JsonArray periodsArray = jsonObject.getAsJsonObject("properties").getAsJsonArray("periods");
 
-            //Access the temperature information and get the value
-            JsonObject temperatureObject=periodsArray.get(0).getAsJsonObject();
-            temperature=temperatureObject.get("temperature").getAsDouble();
+            // Access the temperature information and get the value
+            JsonObject temperatureObject = periodsArray.get(0).getAsJsonObject();
+            temperature = temperatureObject.get("temperature").getAsDouble();
 
-            //Access the windspeed information
-            JsonObject windSpeedObject=periodsArray.get(0).getAsJsonObject();
-            windSpeed=windSpeedObject.get("windSpeed").getAsString();
-            //Access the short forecast information
-            JsonObject forecastObject=periodsArray.get(0).getAsJsonObject();
-            forecast=forecastObject.get("shortForecast").getAsString();
+            // Access the windspeed information
+            JsonObject windSpeedObject = periodsArray.get(0).getAsJsonObject();
+            windSpeed = windSpeedObject.get("windSpeed").getAsString();
+            // Access the short forecast information
+            JsonObject forecastObject = periodsArray.get(0).getAsJsonObject();
+            forecast = forecastObject.get("shortForecast").getAsString();
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
@@ -237,6 +255,6 @@ public class API {
     }
 
     public static void setAddress(String newAddress) {
-        address=newAddress;
+        address = newAddress;
     }
 }
