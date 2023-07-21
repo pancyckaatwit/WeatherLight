@@ -20,6 +20,7 @@ public class Simulation extends JPanel{
     boolean simulationState;
     private ScheduledExecutorService executorService;
     
+    //Constructor
     public Simulation() {
         //Section for the simulation
         JPanel simulation=new JPanel();
@@ -32,7 +33,7 @@ public class Simulation extends JPanel{
             @Override
             public void run() {
                 simulationState = !simulationState;
-                System.out.println("Simulation State: " + simulationState);
+                System.out.println("Showing Temperature: " + simulationState);
             }
         }, 0, 10, TimeUnit.SECONDS);
         //Updates background color 1/2 a second

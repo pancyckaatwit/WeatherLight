@@ -106,11 +106,25 @@ public class Client {
 				//pw.println(formatMsg(user, msg));
 				//pw.println(msg);
 				pw.flush();
+
 				//If statement that sends the tempColor RGB values
-				if(msg.equals("sendTempColor")) {
-					LightEffect lightEffect=new LightEffect();
-					Color tempColor=lightEffect.setTemperatureColor();
-					pw.println(tempColor.getRed() + " " + tempColor.getGreen() + " " + tempColor.getBlue());
+				LightEffect tempLightEffect=new LightEffect();
+				Color tempColor=tempLightEffect.setTemperatureColor();
+				pw.println("RGB " + tempColor.getRed() + " " + tempColor.getGreen() + " " + tempColor.getBlue());
+
+				//If statement that sends the weather effect
+				API.APICall();
+        		String forecast=API.getForecast();
+				if(forecast.contains("Sunny") || forecast.contains("sunny")){
+					pw.println("SUN");
+				}else if(forecast.contains("Thunder") || forecast.contains("thunder")) {
+					pw.println("STR");
+				}else if(forecast.contains("Snow") || forecast.contains("snow")){
+					pw.println("SNO");
+				}else if(forecast.contains("Rain") || forecast.contains("rain")){
+					pw.println("RAI");
+				}else if(forecast.contains("Cloudy") || forecast.contains("cloudy")){
+					pw.println("CLD");
 				}
 		}
 	}	

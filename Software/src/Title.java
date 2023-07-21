@@ -15,6 +15,7 @@ public class Title extends JPanel{
     //Variables
     Color lightBlue=new Color(135, 206, 235);
 
+    //Constructor
     public Title() {
         JLabel title=new JLabel("WeatherLight");
         JTextField addressBar=new JTextField();

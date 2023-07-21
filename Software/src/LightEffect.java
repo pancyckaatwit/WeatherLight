@@ -15,9 +15,7 @@ public class LightEffect {
 
     //Will get a base color depending on the temp (As of now it changes every 3 degrees ranging from 10 to 98)
     public Color setTemperatureColor() {
-        //API.APICall();
         temperature=API.getTemperature();
-        System.out.println("Temp: "+temperature);
 
         if(temperature<4) {
             tempColor=Color.BLUE;
@@ -162,7 +160,7 @@ public class LightEffect {
     public Color rainEffect() {
         //Variables to decide color of sunnyEffect
         Random random=new Random();
-        int rainRed=255;
+        int rainRed=random.nextInt(30)+1;
         //Sets a random green value between 225 and 255
         int rainGreen=random.nextInt(30)+225;
         //Sets a random blue value between 100 and 130
@@ -175,7 +173,14 @@ public class LightEffect {
 
     //Method for the cloudy weather effect on the App simulation
     public Color cloudyEffect() {
-        weatherEffect=Color.GRAY;
+        Random random=new Random();
+        int randomNumber=random.nextInt(2);
+        if(randomNumber==1) {
+            weatherEffect=Color.GRAY;
+        }else {
+            weatherEffect=Color.LIGHT_GRAY;
+        }
+
         return weatherEffect;
     }
     

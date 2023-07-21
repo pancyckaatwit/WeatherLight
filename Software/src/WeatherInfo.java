@@ -4,11 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -24,11 +24,14 @@ public class WeatherInfo extends JPanel{
     JLabel windSpeedText;
     JLabel forecastText;
 
+    JButton switchInfoButton;
+    Boolean currentWeatherInfo;
+
     ScheduledExecutorService executorService;
 
+    //Constructor
     public WeatherInfo() {
         //Declaration of variables
-        //API.APICall();
         temperature=0;
         windSpeed="";
         currentForecast="";
@@ -61,9 +64,18 @@ public class WeatherInfo extends JPanel{
         windSpeedText.setVerticalAlignment(JLabel.CENTER);
         windSpeedText.setForeground(Color.BLACK);
 
+        //Button to open app information
+        switchInfoButton=new JButton("App Info");
+        switchInfoButton.setFont(new Font("Sans=serif", Font.BOLD, 20));
+        switchInfoButton.setPreferredSize(new Dimension(50, 30));
+        switchInfoButton.addActionListener(e-> {
+            openAppInfo();
+        });
+
         weatherInfo.add(temperatureText);
         weatherInfo.add(forecastText);
         weatherInfo.add(windSpeedText);
+        weatherInfo.add(switchInfoButton);
         this.add(weatherInfo);
 
         executorService = Executors.newSingleThreadScheduledExecutor();
@@ -84,5 +96,10 @@ public class WeatherInfo extends JPanel{
         temperatureText.setText("Temperature: " + temperature);
         forecastText.setText("Current Forecast: " + currentForecast);
         windSpeedText.setText("Wind speed: " + windSpeed);
+    }
+
+    //Method for the button to switch the weather info
+    public void openAppInfo() {
+        new AppInfo();
     }
 }
