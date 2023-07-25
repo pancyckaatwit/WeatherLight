@@ -103,7 +103,7 @@ public class LightEffect {
         }else if(forecast.contains("Rain") || forecast.contains("rain")) {
             weatherEffect=rainEffect();
             return weatherEffect;
-        }else if(forecast.contains("Cloudy") || forecast.contains("cloudy")) {
+        }else if(forecast.contains("Cloudy") || forecast.contains("cloudy") || forecast.contains("Haze") || forecast.contains("haze")) {
             weatherEffect=cloudyEffect();
             return weatherEffect;
         }else {
