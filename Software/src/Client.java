@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class Client {
 
 	// Default settings
-	private static String ip = "192.168.8.127";
+	private static String ip = "192.168.43.200";
 	private static int port = 25565;
 	private static String portString = "25565";
 	private static String user = "Username";
@@ -114,7 +114,7 @@ public class Client {
 				pw.println("RGB " + tempColor.getRed() + " " + tempColor.getGreen() + " " + tempColor.getBlue());
 
 				try {
-					Thread.sleep(2000);
+					Thread.sleep(20000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -135,7 +135,7 @@ public class Client {
 				}
 
 				try {
-					Thread.sleep(1100);
+					Thread.sleep(11000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

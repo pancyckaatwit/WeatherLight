@@ -13,7 +13,7 @@ public class Main {
 
         //Calls the Client class
         try {
-            //Client.ClientCall(args);
+            Client.ClientCall(args);
         }catch (Exception e){
             e.printStackTrace();
             //System.exit(1);
