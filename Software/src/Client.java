@@ -130,7 +130,7 @@ public class Client {
 					pw.println("SNO");
 				}else if(forecast.contains("Rain") || forecast.contains("rain")){
 					pw.println("RAI");
-				}else if(forecast.contains("Cloudy") || forecast.contains("cloudy")){
+				}else if(forecast.contains("Cloudy") || forecast.contains("cloudy")|| forecast.contains("Haze") || forecast.contains("haze")){
 					pw.println("CLD");
 				}
 
