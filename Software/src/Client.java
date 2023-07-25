@@ -3,6 +3,7 @@ package Software.src;
 import java.awt.Color;
 import java.io.*;
 import java.net.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Client for chat system. Allows two-way chatting with server. Run after Server
@@ -14,7 +15,7 @@ import java.net.*;
 public class Client {
 
 	// Default settings
-	private static String ip = "192.168.8.127";
+	private static String ip = "192.168.43.200";
 	private static int port = 25565;
 	private static String portString = "25565";
 	private static String user = "Username";
@@ -112,7 +113,13 @@ public class Client {
 				Color tempColor=tempLightEffect.setTemperatureColor();
 				pw.println("RGB " + tempColor.getRed() + " " + tempColor.getGreen() + " " + tempColor.getBlue());
 
-				//Sends the weather effect
+				try {
+					Thread.sleep(20000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
+				//If statement that sends the weather effect
 				API.APICall();
         		String forecast=API.getForecast();
 				if(forecast.contains("Sunny") || forecast.contains("sunny")){
@@ -125,6 +132,12 @@ public class Client {
 					pw.println("RAI");
 				}else if(forecast.contains("Cloudy") || forecast.contains("cloudy")){
 					pw.println("CLD");
+				}
+
+				try {
+					Thread.sleep(11000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
 		}
 	}	
