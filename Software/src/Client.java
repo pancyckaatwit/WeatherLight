@@ -114,7 +114,7 @@ public class Client {
 				pw.println("RGB " + tempColor.getRed() + " " + tempColor.getGreen() + " " + tempColor.getBlue());
 
 				try {
-					TimeUnit.SECONDS.sleep(20);
+					Thread.sleep(2000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -135,7 +135,7 @@ public class Client {
 				}
 
 				try {
-					TimeUnit.SECONDS.sleep(11);
+					Thread.sleep(1100);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
