@@ -25,31 +25,33 @@ public class Client {
 		// Reads from keyboard
 		BufferedReader kbIn = new BufferedReader(new InputStreamReader(System.in));
 
+		ip = receiveStringOverUDP(port);
+
 		// These three try/catch blocks take in settings from user using keyboard BR
 		// System.out.printf("Enter server address: ");
 		// try {
-		// 	ip = kbIn.readLine();
+		// ip = kbIn.readLine();
 		// } catch (IOException e) {
-		// 	e.printStackTrace();
-		// 	System.exit(1);
+		// e.printStackTrace();
+		// System.exit(1);
 		// }
 
 		// System.out.printf("Enter port: ");
 		// String portString = "25565";
 		// try {
-		// 	portString = kbIn.readLine();
+		// portString = kbIn.readLine();
 		// } catch (IOException e) {
-		// 	e.printStackTrace();
-		// 	System.exit(1);
+		// e.printStackTrace();
+		// System.exit(1);
 		// }
 		// port = Integer.valueOf(portString);
 
 		// System.out.printf("Enter username: ");
 		// try {
-		// 	user = kbIn.readLine();
+		// user = kbIn.readLine();
 		// } catch (IOException e) {
-		// 	e.printStackTrace();
-		// 	System.exit(1);
+		// e.printStackTrace();
+		// System.exit(1);
 		// }
 
 		// Socket to connect to server
@@ -101,46 +103,47 @@ public class Client {
 	private static void out(BufferedReader kbIn, PrintWriter pw) {
 		String msg;
 		while (true) {
-				//msg = kbIn.readLine();
-				//Msg is set to the temp so it will activate if statement below
-				msg="sendTempColor";
-				//pw.println(formatMsg(user, msg));
-				//pw.println(msg);
-				pw.flush();
+			// msg = kbIn.readLine();
+			// Msg is set to the temp so it will activate if statement below
+			msg = "sendTempColor";
+			// pw.println(formatMsg(user, msg));
+			// pw.println(msg);
+			pw.flush();
 
-				//Sends the tempColor RGB values
-				LightEffect tempLightEffect=new LightEffect();
-				Color tempColor=tempLightEffect.setTemperatureColor();
-				pw.println("RGB " + tempColor.getRed() + " " + tempColor.getGreen() + " " + tempColor.getBlue());
+			// Sends the tempColor RGB values
+			LightEffect tempLightEffect = new LightEffect();
+			Color tempColor = tempLightEffect.setTemperatureColor();
+			pw.println("RGB " + tempColor.getRed() + " " + tempColor.getGreen() + " " + tempColor.getBlue());
 
-				try {
-					Thread.sleep(20000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+			try {
+				Thread.sleep(20000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 
-				//If statement that sends the weather effect
-				API.APICall();
-        		String forecast=API.getForecast();
-				if(forecast.contains("Sunny") || forecast.contains("sunny")){
-					pw.println("SUN");
-				}else if(forecast.contains("Thunder") || forecast.contains("thunder")) {
-					pw.println("STR");
-				}else if(forecast.contains("Snow") || forecast.contains("snow")){
-					pw.println("SNO");
-				}else if(forecast.contains("Rain") || forecast.contains("rain")){
-					pw.println("RAI");
-				}else if(forecast.contains("Cloudy") || forecast.contains("cloudy")|| forecast.contains("Haze") || forecast.contains("haze")){
-					pw.println("CLD");
-				}
+			// If statement that sends the weather effect
+			API.APICall();
+			String forecast = API.getForecast();
+			if (forecast.contains("Sunny") || forecast.contains("sunny")) {
+				pw.println("SUN");
+			} else if (forecast.contains("Thunder") || forecast.contains("thunder")) {
+				pw.println("STR");
+			} else if (forecast.contains("Snow") || forecast.contains("snow")) {
+				pw.println("SNO");
+			} else if (forecast.contains("Rain") || forecast.contains("rain")) {
+				pw.println("RAI");
+			} else if (forecast.contains("Cloudy") || forecast.contains("cloudy") || forecast.contains("Haze")
+					|| forecast.contains("haze")) {
+				pw.println("CLD");
+			}
 
-				try {
-					Thread.sleep(12000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+			try {
+				Thread.sleep(12000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
-	}	
+	}
 
 	/**
 	 * Formats the username and message to send. 'Username: Message'
@@ -152,4 +155,24 @@ public class Client {
 	private static String formatMsg(String u, String m) {
 		return String.format(u + ": " + m);
 	}
+
+	public static String receiveStringOverUDP(int port) {
+		byte[] buffer = new byte[1024];
+
+		try (DatagramSocket socket = new DatagramSocket(port)) {
+			DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+
+			// Receive the UDP packet
+			socket.receive(packet);
+
+			// Extract the received data and convert it to a string
+			String receivedString = new String(packet.getData(), 0, packet.getLength());
+
+			return receivedString;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }
