@@ -35,7 +35,7 @@ public class Simulation extends JPanel{
                 simulationState = !simulationState;
                 System.out.println("Showing Temperature: " + simulationState);
             }
-        }, 0, 20, TimeUnit.SECONDS);
+        }, 0, 10, TimeUnit.SECONDS);
         //Updates background color 1/2 a second
         executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.scheduleAtFixedRate(new Runnable() {
