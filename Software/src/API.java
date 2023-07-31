@@ -1,7 +1,5 @@
 package Software.src;
 
-import java.util.*;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -11,9 +9,7 @@ import java.net.*;
 import java.io.*;
 import java.net.http.*;
 import java.nio.charset.StandardCharsets;
-// import java.lang.Math.*;
 
-// I'll clean this up later
 public class API {
 
     // Variables
@@ -27,7 +23,6 @@ public class API {
         if (address == "525 Huntington Avenue, Boston MA!") {
             address = API2.APICall();
         }
-        // String address2= "140 marlin circle panama city beach";
 
         // Just trust me, it has to do this
         String encodedAddress = URLEncoder.encode(address, StandardCharsets.UTF_8);
@@ -76,10 +71,10 @@ public class API {
             for (JsonElement element : jsonArray) {
                 JsonObject jsonObject = element.getAsJsonObject();
                 JsonArray boundingbox = jsonObject.get("boundingbox").getAsJsonArray();
+                // use minimum values within the given area
+                // should nearly always be close enough
                 double minLat = boundingbox.get(0).getAsDouble();
-                double maxLat = boundingbox.get(1).getAsDouble();
                 double minLon = boundingbox.get(2).getAsDouble();
-                double maxLon = boundingbox.get(3).getAsDouble();
 
                 returner[0] = Math.round(minLat * 1000.0) / 1000.0;
                 returner[1] = Math.round(minLon * 1000.0) / 1000.0;
@@ -93,34 +88,6 @@ public class API {
                 InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    // Used by geocoding method to pull lat and lon then do a little formatting
-    private static Double latlon(int opt, String responseBody) {
-
-        String lookingFor = "empty";
-        if (opt == 0) {
-            lookingFor = "lat";
-        } else {
-            lookingFor = "lon";
-        }
-
-        Double returner = 0.0;
-
-        int startIndex = responseBody.indexOf(lookingFor);
-
-        // this is the worst possible way to do this
-        if (startIndex != -1 && startIndex + lookingFor.length() + 10 <= responseBody.length()) {
-            String result = responseBody.substring(startIndex + lookingFor.length(),
-                    startIndex + lookingFor.length() + 10);
-            result = result.substring(3);
-
-            returner = Double.parseDouble(result);
-
-        }
-
-        returner = Math.round(returner * 1000.0) / 1000.0;
-        return returner;
     }
 
     private static String gridpoints(String urlFormat) {
@@ -216,9 +183,6 @@ public class API {
 
             // string that contains the full response
             String responseBody = response.body();
-
-            // For now just prints the whole thing, we can pull whatever later
-            // System.out.println(responseBody);
 
             // Parse the JSON Object
             JsonObject jsonObject = JsonParser.parseString(responseBody).getAsJsonObject();

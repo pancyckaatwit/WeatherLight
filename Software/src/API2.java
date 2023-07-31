@@ -1,8 +1,5 @@
 package Software.src;
 
-import java.util.*;
-
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -10,9 +7,7 @@ import java.net.*;
 import java.io.*;
 import java.net.http.*;
 import java.nio.charset.StandardCharsets;
-// import java.lang.Math.*;
 
-// I'll clean this up later
 public class API2 {
 
     public static String APICall() {
@@ -44,17 +39,9 @@ public class API2 {
             // string that contains the full response
             String responseBody = response.body();
 
-            // System.out.println(responseBody);
-
             // Parse the JSON Object
             JsonObject jsonObject = JsonParser.parseString(responseBody).getAsJsonObject();
 
-            // Access the temperature information and get the value
-            // JsonArray periodsArray =
-            // jsonObject.getAsJsonObject("properties").getAsJsonArray("periods");
-
-            // Access the temperature information and get the value
-            // JsonObject temperatureObject = periodsArray.get(0).getAsJsonObject();
             String resultLocation = jsonObject.get("city").getAsString() + ", "
                     + jsonObject.get("regionName").getAsString();
             System.out.println(resultLocation);
