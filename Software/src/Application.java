@@ -12,6 +12,7 @@ public class Application extends JFrame{
     private Simulation s=new Simulation();
     private WeatherInfo w=new WeatherInfo();
 
+    //Constructor for JFrame
     Application() {
         //Size and rules for JFrame
         JFrame application=new JFrame("WeatherLight");

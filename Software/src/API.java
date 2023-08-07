@@ -10,6 +10,7 @@ import java.io.*;
 import java.net.http.*;
 import java.nio.charset.StandardCharsets;
 
+//Class that calls the weather.gov API
 public class API {
 
     // Variables

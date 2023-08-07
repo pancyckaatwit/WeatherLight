@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+//Responsible for the app information window
 public class AppInfo extends JFrame{
     //Variables
     Color lightBlue=new Color(135, 206, 235);

@@ -2,7 +2,6 @@ package Software.src;
 
 import java.awt.Color;
 import java.util.Random;
-import java.util.concurrent.ScheduledExecutorService;
 
 //Responsible for the color of the simulation
 public class LightEffect {

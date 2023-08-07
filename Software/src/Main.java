@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
+    //Responsible for running the project.
     public static void main(String args[]) {
 
         //Creates the desktop application

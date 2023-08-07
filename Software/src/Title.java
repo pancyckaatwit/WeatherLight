@@ -46,6 +46,7 @@ public class Title extends JPanel{
         this.add(addressButton);
     }
 
+    //Method to call the API when address is changed via the bar and button
     private void updateAddress(String address) {
         API.setAddress(address);
     }
