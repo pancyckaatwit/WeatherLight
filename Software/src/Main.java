@@ -4,6 +4,15 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Desktop application for controlling ESP32 WeatherLight device
+ * WIT Senior Project Summer 2023
+ * 
+ * @author pancycka@wit.edu , brownc32@wit.edu
+ *
+ */
+
+
 public class Main {
 
     //Responsible for running the project.

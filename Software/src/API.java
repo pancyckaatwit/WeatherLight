@@ -81,9 +81,6 @@ public class API {
                 returner[1] = Math.round(minLon * 1000.0) / 1000.0;
                 return;
             }
-            // contain the results of the latitude and longitude
-            // java moment
-
         } catch (IOException |
 
                 InterruptedException e) {
